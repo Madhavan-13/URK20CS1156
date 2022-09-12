@@ -3,32 +3,60 @@
     <head>
         <title>Digital Clock</title>
     </head>
-
-    <body onload="display()">
-
-        <h1>Digital Clock</h1>
-        <p id="time"></p>
-
-        <script>
-            function display() 
-            {
-                const today = new Date();
-                let h = today.getHours();
-                let m = today.getMinutes();
-                let s = today.getSeconds();
-                m = checkTime(m);
-                s = checkTime(s);
-                document.getElementById('time').innerHTML =  h + ":" + m + ":" + s;
-                setTimeout(display, 1000);
-            }
-
-            function checkTime(i) 
-            {
-                if (i < 10) {i = "0" + i};
-                return i;
-            }
-
-        </script>
-    </body>
+<html lang="en"> 
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content=
+        "width=device-width,
+        initial-scale=1.0" /> 
+    <title>Digital Clock</title> 
+    <style>
+        #clock {
+            font-size: 200px;
+            width: 1100px;
+            margin: 200px;
+            text-align: center;
+            border: 10px solid rgb(0, 255, 242);
+            border-radius: 10px;
+        }
+    </style>
+</head> 
+<body>
+    <div id="clock">8:10:45</div> 
+    <script>
+        setInterval(showTime, 1000);
+        function showTime() {
+            let time = new Date();
+            let hour = time.getHours();
+            let min = time.getMinutes();
+            let sec = time.getSeconds();
+            am_pm = "AM"; 
+            if (hour > 12) {
+                hour -= 12;
+                am_pm = "PM";
+            }
+            if (hour == 0) {
+                hr = 12;
+                am_pm = "AM";
+            }
+            hour = hour < 10 ? "0" + hour : hour;
+            min = min < 10 ? "0" + min : min;
+            sec = sec < 10 ? "0" + sec : sec; 
+            let currentTime = hour + ":"
+                + min + ":" + sec + am_pm;
+            document.getElementById("clock")
+                .innerHTML = currentTime;
+        }
+        showTime();
+    </script>
+</body>
+<foot>
+    <script>
+        setInterval(
+        function () {
+          var randomColor = Math.floor(Math.random()*16777215).toString(16);
+          document.body.style.backgroundColor = "#"+randomColor;
+        },1000);
+        </script>
+</foot>
 </html>
-
